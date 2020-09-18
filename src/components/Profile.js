@@ -6,7 +6,9 @@ class Profile extends React.Component {
     super(props);
     // TODO: Set up default state
     this.state = {
-      user: {},
+      user: {
+        username: ''
+      },
       tweets: []
     }
   }
@@ -44,7 +46,8 @@ class Profile extends React.Component {
       if (!res.ok) {
         throw res;
       }
-      return res.json();
+      const data = await res.json();
+      return data.user;
 
     } catch (e) {
       console.error(e);
@@ -63,8 +66,21 @@ class Profile extends React.Component {
   }
 
   render() {
+    const {user, tweets} = this.state;
+    // debugger;
     return (
-      <h1>Profile Page</h1>
+      <div>
+        <h1>{user.username}'s Profile Page</h1>
+        <ul>
+          {tweets.map((tweet) => {
+            const { id, message } = tweet;
+            return (
+              <li key={id}>
+                <p>{message}</p>
+              </li>
+          )})}
+        </ul>
+      </div>
     );
   }
 };
