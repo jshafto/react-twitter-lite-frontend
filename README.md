@@ -8,7 +8,7 @@ Client-side single-page application to render tweets from a simplified twitter-l
 - [x] User registration form
 - [x] Client-side routes
 - [x] Establish user context
-- [ ] User login form
+- [x] User login form
 - [ ] User profile page
 - Bonus:
   - [ ] Creating and deleting tweets

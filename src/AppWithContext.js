@@ -22,7 +22,6 @@ class AppWithContext extends React.Component {
         }
         */
         currentUserId = id; // set currentUserId equal to the payload's user id
-        debugger;
       } catch (e) {
         // if there is an error parsing the token, then remove the 'token' cookie
         authToken = null;
@@ -32,13 +31,22 @@ class AppWithContext extends React.Component {
     this.state = {
       authToken: authToken || null,
       currentUserId: currentUserId,
-      updateContext: this.updateContext
+      login: this.login,
+      logout: this.logout
     };
   }
 
-  updateContext (authToken, currentUserId) {
+  login = (authToken, currentUserId) =>{
     this.setState({authToken, currentUserId}, () => console.log(this.state))
   }
+
+  logout = () => {
+    this.setState({ authToken: null, currentUserId: null }, () => {
+      console.log(this.state);
+      Cookies.remove('token');
+    });
+  }
+
 
   render() {
     // console.log(this.state)

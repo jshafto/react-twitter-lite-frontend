@@ -12,17 +12,10 @@ class RegistrationForm extends React.Component {
     };
   }
 
-  updateUsername = (e) => {
-    this.setState({ username: e.target.value });
-  }
-
-  updateEmail = (e) => {
-    this.setState({ email: e.target.value });
-  }
-
-  updatePassword = (e) => {
-    this.setState({ password: e.target.value });
-  }
+  update = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
 
   registerUser = async (e) => {
     e.preventDefault();
@@ -39,7 +32,7 @@ class RegistrationForm extends React.Component {
       }
       const { token, user:{id} } = await res.json();
       // console.log(data.token, data.user.id);
-      this.props.updateContext(token, id);
+      this.props.login(token, id);
 
     } catch (e) {
       console.error(e)
@@ -55,21 +48,21 @@ class RegistrationForm extends React.Component {
         <input
           type="text"
           value={username}
-          onChange={this.updateUsername}
+          onChange={this.update}
           name="username"
           placeholder="Enter Username"
         />
         <input
           type="email"
           value={email}
-          onChange={this.updateEmail}
+          onChange={this.update}
           name="email"
           placeholder="Enter Email"
         />
         <input
           type="password"
           value={password}
-          onChange={this.updatePassword}
+          onChange={this.update}
           name="password"
           placeholder="Enter Password"
         />
@@ -83,7 +76,7 @@ class RegistrationForm extends React.Component {
 
 const RegistrationFormWithContext = (props) => (
 <UserContext.Consumer>
-  {value => <RegistrationForm updateContext={value.updateContext} {...props} />}
+  {value => <RegistrationForm login={value.login} {...props} />}
 </UserContext.Consumer>
 )
 
