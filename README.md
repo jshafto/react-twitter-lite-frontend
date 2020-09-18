@@ -11,5 +11,5 @@ Client-side single-page application to render tweets from a simplified twitter-l
 - [x] User login form
 - [x] User profile page
 - Bonus:
-  - [ ] Creating and deleting tweets
+  - [x] Creating tweets
   - [ ] Higher order components
