@@ -7,7 +7,7 @@ Client-side single-page application to render tweets from a simplified twitter-l
 ## Project Checklist
 - [x] User registration form
 - [x] Client-side routes
-- [ ] Establish user context
+- [x] Establish user context
 - [ ] User login form
 - [ ] User profile page
 - Bonus:

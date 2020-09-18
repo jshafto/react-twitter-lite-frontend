@@ -1,4 +1,5 @@
 import React from 'react';
+import UserContext from '../../contexts/UserContext';
 
 class RegistrationForm extends React.Component {
   constructor(props) {
@@ -36,8 +37,9 @@ class RegistrationForm extends React.Component {
       if (!res.ok) {
         throw res;
       }
-      const data = await res.json();
-      console.log(data.token, data.user.id);
+      const { token, user:{id} } = await res.json();
+      // console.log(data.token, data.user.id);
+      this.props.updateContext(token, id);
 
     } catch (e) {
       console.error(e)
@@ -78,4 +80,13 @@ class RegistrationForm extends React.Component {
   }
 }
 
-export default RegistrationForm;
+
+const RegistrationFormWithContext = (props) => (
+<UserContext.Consumer>
+  {value => <RegistrationForm updateContext={value.updateContext} {...props} />}
+</UserContext.Consumer>
+)
+
+
+
+export default RegistrationFormWithContext;
