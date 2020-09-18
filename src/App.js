@@ -1,9 +1,11 @@
 import React from 'react';
+import RegistrationForm from './components/session/RegistrationForm';
 
-function App() {
-  return (
-    <h1>Hello world!</h1>
-  );
-}
+const App = () => (
+  <div>
+    <h1>Twitter Lite</h1>
+    <RegistrationForm />
+  </div>
+);
 
 export default App;
